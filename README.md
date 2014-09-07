@@ -1,4 +1,4 @@
 UPC
 ===
 
-Trabajos de la upc
+Trabajos de clase en la upc
