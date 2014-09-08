@@ -1,10 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 package obras_caridad;
+import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  *
@@ -12,10 +9,6 @@ package obras_caridad;
  */
 public class Obras_caridad {
 
-    /**
-     * @param args the command line arguments
-     */
-    public double monto_recaudado;
     public static void main(String[] args) {
         // TODO code application logic here
         String[][] arrDonantes ={
@@ -23,19 +16,22 @@ public class Obras_caridad {
                                 {"51247865","Andrea","993545482","andrea@gmail.com","42.5"},
                                 {"12345678","Diego","4251365","diego@gmail.com","20"}
                                 };
-        //System.out.println(arrDonantes.length);
         
-        Donante donante = new Donante(arrDonantes);
-        System.out.println("1.- El monto total que se ha recaudado: "+ donante.montoTotalRecaudado());
-        System.out.println("2.- El nombre de la persona que aportó más: "+ donante.mayorAportante());
-        System.out.println("3.- "+ donante.buscarDonante("32165482"));
-        System.out.println("4.- El nombre de la persona que aportó más: "+ donante.promedioRecaudado());
+        ArrayList<Donante> donantes = new ArrayList<Donante>();
+        for(int i=0; i< arrDonantes.length; i++ ){
+            Donante donante = new Donante();
+            donante.setDni(arrDonantes[i][0]);
+            donante.setNombre(arrDonantes[i][1]);
+            donante.setTelefono(arrDonantes[i][2]);
+            donante.setEmail(arrDonantes[i][3]);
+            donante.setMonto_aportado( Double.parseDouble(arrDonantes[i][4]));
+            donantes.add(donante);
+        }
         
-        /*
-        Donante donante = new Donante();
-        donante.setDni("46781964");
-        System.err.println(odnante.montoTotalRecaudado());
-        */
+        Fundacion fundacion = new Fundacion();
+        System.out.println("1.- El monto total que se ha recaudado: "+ fundacion.montoTotalRecaudado(donantes));
+        System.out.println("2.- El nombre de la persona que aportó más: "+ fundacion.mayorAportante(donantes));
+        System.out.println("3.- "+ fundacion.buscarDonante("32165482", donantes));
+        System.out.println("4.- El promedio de dinero recaudado: "+ fundacion.promedioRecaudado(donantes));    
     }
-    
 }
